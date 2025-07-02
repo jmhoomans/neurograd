@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/jspsych.css">
     <link rel="stylesheet" href="css/custom_jspsych.css">
     <link href="img/favicon.ico" rel="icon">
+    <script src="js/jquery/jquery-3.7.1.js"></script>
 </head>
 
 <body></body>
@@ -128,7 +129,13 @@
                 .data
                 .get()
                 .localSave('csv', basename + '.csv');
-        }
+            $.ajax({
+                type: "POST",
+                url: "/save-file",
+                data: jsPsych.data.get().json(),
+                contentType: "application/json",
+            }).done(function () {console.log('uploaded')})
+            }
     });
 
     var enter_fullscreen = {
